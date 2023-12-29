@@ -16,5 +16,8 @@ def getBrowserFromURI(uri):
     browser.get(uri)
     return browser
 
+
+
+
 if __name__ == "__main__":
     getBrowserFromURI(uri="https://www.29cm.co.kr/home/")
