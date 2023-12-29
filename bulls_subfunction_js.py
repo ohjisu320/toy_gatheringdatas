@@ -5,8 +5,9 @@ import time
 
 
 from selenium.webdriver.common.by import By
-def reviews(browser, bullsone_reviews) :
+def reviews(browser, bullsone_reviews, bullsone_product, loop_num) :
     value_element ="#item_pddetail > div.purchase_content > ul > li:nth-child(2) > a" # 상품후기 버튼 클릭
+    time.sleep(2)
     browser.find_element(by=By.CSS_SELECTOR, value=value_element).click()
     list_paging = browser.find_elements(by=By.CSS_SELECTOR, value="#review_box > div.paging > div > div > a")
     for pagenum in range(len(list_paging)) : # 0~9
@@ -25,8 +26,10 @@ def reviews(browser, bullsone_reviews) :
             list_special_reviews.append(special_reviews)
         list_rate = browser.find_elements(by=By.CSS_SELECTOR, value="div.rating_stars.float-left > b ")
         list_contents = browser.find_elements(by=By.CSS_SELECTOR, value="div.review_list.list_style01 > ul > li > dl > dd.reply_view_inner > div.review_text > div")
+        time.sleep(2)
+        p_id = bullsone_product.find({}, {"_id":1})[loop_num]["_id"]
         for num in range(len(list_reviews)) :
-            bullsone_reviews.insert_one({"이름": list_names[num].text,"별점": list_rate[num].text,"네이버/한달사용": list_special_reviews[num],"내용":  list_contents[num].text})
+            bullsone_reviews.insert_one({"상품ID": p_id,"이름": list_names[num].text,"별점": list_rate[num].text,"네이버/한달사용": list_special_reviews[num],"내용":  list_contents[num].text})
             pass
         list_paging = browser.find_elements(by=By.CSS_SELECTOR, value="#review_box > div.paging > div > div > a")
         if pagenum < 9 :
@@ -48,4 +51,35 @@ def Connect_Mongo(col_name):
 # browser = getBrowserFromURI(uri="https://bullsonemall.com/store/product.detail.oz?pdtIdx=5423&cataIdx=")
 # bullsone_reviews = Connect_Mongo("bullsone_reviews")
 # reviews()
+
+if __name__ == "__main__":
+    from selenium.webdriver.common.by import By
+    
+    def getBrowserFromURI(uri):
+        webdriver_manager_directory = ChromeDriverManager().install()
+
+        # ChromeDriver 실행
+        browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
+
+        # Chrome WebDriver의 capabilities 속성 사용
+        capabilities = browser.capabilities
+
+        browser.get(uri)
+        return browser
+    browser = getBrowserFromURI(uri="https://bullsonemall.com/store/product.detail.oz?pdtIdx=5423&cataIdx=")
+    # 상품명 :#pdt2form > div > h3
+    # 정상가 : #pdt2form > div > div.price_area > small > del
+    # 할인가 : #pdt2form > div > div.price_area > strong.price
+    # 별점 : #pdt2form > div > div.about_rating > div > b
+
+    from pymongo import MongoClient
+    def Connect_Mongo(col_name):
+        mongoClient = MongoClient("mongodb://localhost:27017")
+        database = mongoClient["gatheringdatas"]
+        collection = database[col_name]
+        # collection.delete_many({})
+        return collection
+    bullsone_reviews = Connect_Mongo("bullsone_reviews")
+    bullsone_product = Connect_Mongo("bullsone_product")
+    reviews(browser=browser, bullsone_reviews=bullsone_reviews, bullsone_product=bullsone_product)
 
