@@ -3,22 +3,9 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-def getBrowserFromURI(uri):
-    webdriver_manager_directory = ChromeDriverManager().install()
-
-    # ChromeDriver 실행
-    browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
-
-    # Chrome WebDriver의 capabilities 속성 사용
-    capabilities = browser.capabilities
-
-    # - 주소 입력
-    browser.get(uri)
- 
-    return browser
 
 from selenium.webdriver.common.by import By
-def reviews() :
+def reviews(browser, bullsone_reviews) :
     value_element ="#item_pddetail > div.purchase_content > ul > li:nth-child(2) > a" # 상품후기 버튼 클릭
     browser.find_element(by=By.CSS_SELECTOR, value=value_element).click()
     list_paging = browser.find_elements(by=By.CSS_SELECTOR, value="#review_box > div.paging > div > div > a")
@@ -62,10 +49,3 @@ def Connect_Mongo(col_name):
 # bullsone_reviews = Connect_Mongo("bullsone_reviews")
 # reviews()
 
-if __name__ == "__main__":
-    browser = getBrowserFromURI(uri="https://bullsonemall.com/store/product.detail.oz?pdtIdx=5423&cataIdx=")
-    bullsone_reviews = Connect_Mongo("bullsone_reviews")
-    reviews()
-  
-    pass
-    
