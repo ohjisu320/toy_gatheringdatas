@@ -16,36 +16,26 @@ def getBrowserFromURI(uri):
     browser.get(uri)
     return browser
 
-if __name__ == "__main__":
-    getBrowserFromURI(uri="https://www.29cm.co.kr/home/")
+# if __name__ == "__main__":
+#     getBrowserFromURI(uri="https://bullsonemall.com")
     
-    
-browser = getBrowserFromURI(uri="https://www.29cm.co.kr/home/")
+browser = getBrowserFromURI(uri="https://bullsonemall.com")
 
 from selenium.webdriver.common.by import By
-browser.find_element(by=By.CSS_SELECTOR, value="div.ng-tns-c43-0.nav_snb > div > ul > li:nth-child(1) > a").click()
+browser.find_element(by=By.CSS_SELECTOR, value="#header > section > section > ul > li:nth-child(2) > a").click()
 
-# browser.quit()
+# 주소 : https://bullsonemall.com
+# 베스트 메뉴 : #header > section > section > ul > li:nth-child(2) > a
+# 베스트 물품 : #best_list > div.item_list > div:nth-child({}) > dl > dt > a
 
-# 주소 : https://www.29cm.co.kr/home/
-# 상품 : div.css-1k28ov0.e5a9ewn0 > div.css-1rr4qq7.e5a9ewn2 > ul > li:nth-child({}) > div > a
-# 아이디(element_name) : div.css-cjqsv7.e1pl60v54 > span.css-5030pi.e1pl60v55
-# 체형(element_bodytype) : div > div:nth-child(1) > span.css-wle0cx.e1rsz3cb2
-# 사이즈(element_size) : div > div:nth-child(2) > span.css-wle0cx.e1rsz3cb2
-# 리뷰(element_review) : div.css-zeh8nu.e1pl60v57 > div.css-31l7gp.e1pl60v51 > p
-
-
-
-# BEST -> 첫번째 상품 클릭 -> 
-for x in [1,2,3,4] :
-    #
+for x in [1,2,3,4,5] :
     try :
-        # element_item = "__next > div.css-1k28ov0.e5a9ewn0 > div.css-1rr4qq7.e5a9ewn2 > ul > li:nth-child({}) > div > a".format(x)
-        browser.find_element(by=By.CSS_SELECTOR, value="div.css-1k28ov0.e5a9ewn0 > div.css-1rr4qq7.e5a9ewn2 > ul > li:nth-child({}) > div > a".format(x)).click()
-        pass
-        case_number = browser.find_element(by=By.CSS_SELECTOR, value="")
-        case_number = case_number.text
+        # element_item = "#best_list > div.item_list > div:nth-child({}) > dl > dt > a".format(x)
+        browser.find_element(by=By.CSS_SELECTOR, value="#best_list > div.item_list > div:nth-child({}) > dl > dt > a".format(x)).click()
+        browser.back()
+
     except :
         case_number = "None"
 
 
+# browser.quit()
