@@ -9,6 +9,8 @@
     : 현재가격 : #__next > div.css-125q81m.evt9g3e1 > div.css-1y47rmj.e14czvjs0 > div.css-1i9d63n.e14czvjs1 > div.css-z25zy4.e1lehz0e0 > div > div.css-lcoy4n.e1lehz0e7 > div > div > div:nth-child(1) > span.css-4bcxzt.ent7twr4
 - 리뷰 크롤링 -def 4
     : 아이디 : #__next > div.css-4djj0f.evt9g3e2 > section.eeja3je7.css-1w043rb.e16llo9z0 > div.css-0.e1fqypsc0 > ul > li:nth-child(1) > div.css-100fusk.e1pl60v52 > div > div.csscjqsv7.e1pl60v54 > span.css-5030pi.e1pl60v55
-    : 체형 : 
-    : 사이즈
+    : 별점 : 
+- 네이버사용후기 : #review_box > div.review_list.list_style01 > ul > li:nth-child(3) > dl > dd.reply_view_inner > div.review_text > p > span > span
+- 한달사용후기 : #review_box > div.review_list.list_style01 > ul > li:nth-child(2) > dl > dd.reply_view_inner > div.review_text > p > span > span
+#review_box > div.review_list.list_style01 > ul > li > dl > dd.reply_view_inner > div.review_text > p > span > span
 -    : 내용

@@ -32,10 +32,13 @@ for x in [1,2,3,4,5] :
     try :
         # element_item = "#best_list > div.item_list > div:nth-child({}) > dl > dt > a".format(x)
         browser.find_element(by=By.CSS_SELECTOR, value="#best_list > div.item_list > div:nth-child({}) > dl > dt > a".format(x)).click()
-        browser.back()
 
+
+
+        browser.back()
     except :
-        case_number = "None"
+        pass
+        
 
 
 # browser.quit()
