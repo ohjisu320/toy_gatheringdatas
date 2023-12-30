@@ -2,7 +2,7 @@
 - 브라우저 접속 - def 1
 - 베스트 클릭 - def 2
 - 상품 클릭 -def 2
-- X 상품 크롤링 -def 3 X
+- 상품 크롤링 -def 3
     : 브랜드이름 : #__next > div.css-125q81m.evt9g3e1 > div.css-1ux6qe5.evt9g3e5 > div > a > div > h3
     : 상품이름 : #__next > div.css-125q81m.evt9g3e1 > div.css-1y47rmj.e14czvjs0 > div.css-1i9d63n.e14czvjs1 > div.css-z25zy4.e1lehz0e0 > div > div.css-e9pho6.e1lehz0e2 > div:nth-child(1) > h2
     : 원래가격 : #__next > div.css-125q81m.evt9g3e1 > div.css-1y47rmj.e14czvjs0 > div.css-1i9d63n.e14czvjs1 > div.css-z25zy4.e1lehz0e0 > div > div.css-lcoy4n.e1lehz0e7 > div > p.css-1bci2fm.ent7twr1
